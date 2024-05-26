@@ -11,7 +11,7 @@ public class App implements Callable<Integer> {
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Display this help message and exit.")
     private boolean helpRequested;
 
-    @Option(names = {"-v", "--version"}, versionHelp = true, description = "Display version info and exit.")
+    @Option(names = {"-V", "--version"}, versionHelp = true, description = "Display version info and exit.")
     private boolean versionRequested;
 
     public static void main(String... args) {
