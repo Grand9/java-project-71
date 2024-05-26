@@ -21,12 +21,12 @@ public class App implements Callable<Integer> {
     private File filepath1;
     @Parameters(paramLabel = "filepath2",description = "path to second file")
     private File filepath2;
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    @Option(names = {"-f", "--format"},paramLabel = "format", description = "output format [default: stylish]")
     private String format = "SHA-256";
-    @Option(names = {"-h", "--help"}, usageHelp = true, description = "Display this help message and exit.")
+    @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
     private boolean helpRequested;
 
-    @Option(names = {"-V", "--version"}, versionHelp = true, description = "Display version info and exit.")
+    @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
     private boolean versionRequested;
 
     public static void main(String... args) {
