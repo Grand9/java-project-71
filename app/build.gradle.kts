@@ -1,8 +1,9 @@
 plugins {
-    checkstyle
     application
-    id("java")
-    jacoco
+    id("checkstyle")
+    id("com.adarshr.test-logger") version "3.0.0"
+    id("com.github.ben-manes.versions") version "0.39.0"
+    id("jacoco")
 }
 
 application {
@@ -25,6 +26,14 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+    }
+}
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
 }
+
