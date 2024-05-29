@@ -5,4 +5,5 @@
 
 ## Asciinema с примерами использования программы
 https://asciinema.org/a/zR1TALKn42rCpjyzj05HfZEoL
-[![asciicast](https://asciinema.org/a/zR1TALKn42rCpjyzj05HfZEo.svg)](https://asciinema.org/a/zR1TALKn42rCpjyzj05HfZEo)
+[![asciicast](https://asciinema.org/a/zR1TALKn42rCpjyzj05HfZEo.png)](https://asciinema.org/a/zR1TALKn42rCpjyzj05HfZEo)
+
