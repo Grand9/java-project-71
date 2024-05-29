@@ -3,11 +3,10 @@ package hexlet.code;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
-
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
-import static hexlet.code.Differ.*;
+import static hexlet.code.Differ.generate;
 
 @Command(name = "genDiff", mixinStandardHelpOptions = true, version = "genDiff 4.0",
         description = "Compares two configuration files and shows a difference.")
