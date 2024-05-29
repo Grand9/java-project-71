@@ -1,9 +1,14 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     application
     id("checkstyle")
     id("com.adarshr.test-logger") version "3.0.0"
     id("com.github.ben-manes.versions") version "0.39.0"
     id("jacoco")
+    id("io.freefair.lombok") version "8.6"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 application {
@@ -26,14 +31,17 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
-tasks.jacocoTestReport {
-    dependsOn(tasks.test)
-    reports {
-        xml.required.set(true)
-    }
-}
 tasks.test {
     useJUnitPlatform()
-    finalizedBy(tasks.jacocoTestReport)
+    // https://technology.lastminute.com/junit5-kotlin-and-gradle-dsl/
+    testLogging {
+        exceptionFormat = TestExceptionFormat.FULL
+        events = mutableSetOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
+        // showStackTraces = true
+        // showCauses = true
+        showStandardStreams = true
+    }
 }
+
+tasks.jacocoTestReport { reports { xml.required.set(true) } }
 
