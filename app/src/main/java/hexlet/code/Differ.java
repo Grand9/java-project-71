@@ -5,7 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Differ {
 
@@ -40,8 +43,8 @@ public class Differ {
             // Если ключ присутствует в обоих Map
             if (map1.containsKey(key) && map2.containsKey(key)) {
                 // Сравниваем значения для данного ключа
-                String value1 = map1.get(key).toString();
-                String value2 = map2.get(key).toString();
+                String value1 = map1.get(key).asText();
+                String value2 = map2.get(key).asText();
                 if (value1.equals(value2)) {
                     result.append("  ").append(key).append(": ").append(value1).append("\n");
                 } else {
@@ -50,10 +53,10 @@ public class Differ {
                 }
             } else if (map1.containsKey(key)) {
                 // Если ключ присутствует только в первой Map
-                result.append("- ").append(key).append(": ").append(map1.get(key)).append("\n");
+                result.append("- ").append(key).append(": ").append(map1.get(key).asText()).append("\n");
             } else {
                 // Если ключ присутствует только во второй Map
-                result.append("+ ").append(key).append(": ").append(map2.get(key)).append("\n");
+                result.append("+ ").append(key).append(": ").append(map2.get(key).asText()).append("\n");
             }
         }
 
