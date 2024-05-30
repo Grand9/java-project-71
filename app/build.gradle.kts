@@ -3,10 +3,10 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     application
+    jacoco
     id("checkstyle")
     id("com.adarshr.test-logger") version "3.0.0"
     id("com.github.ben-manes.versions") version "0.39.0"
-    id("jacoco")
     id("io.freefair.lombok") version "8.6"
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
@@ -35,9 +35,6 @@ tasks.test {
     useJUnitPlatform()
 }
 
-jacoco {
-        toolVersion = "0.8.7"
-}
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
