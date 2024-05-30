@@ -33,15 +33,16 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
-    // https://technology.lastminute.com/junit5-kotlin-and-gradle-dsl/
-    testLogging {
-        exceptionFormat = TestExceptionFormat.FULL
-        events = mutableSetOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
-        // showStackTraces = true
-        // showCauses = true
-        showStandardStreams = true
-    }
 }
 
-tasks.jacocoTestReport { reports { xml.required.set(true) } }
+jacoco {
+        toolVersion = "0.8.7"
+}
 
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
