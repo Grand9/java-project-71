@@ -37,18 +37,21 @@ jobs:
           gradle-version: 8.7
 
       - name: Run Checkstyle
-        run: ./gradlew -p app checkstyleMain
+        run: ./gradlew checkstyleMain
+        working-directory: ./app
 
       - name: Run tests with coverage
-        run: ./gradlew -p app test jacocoTestReport
+        run: ./gradlew test jacocoTestReport
+        working-directory: ./app
 
       - name: Upload coverage to CodeClimate
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
-          ./gradlew -p app test jacocoTestReport
-          ./cc-test-reporter format-coverage app/build/reports/jacoco/test/jacocoTestReport.xml --input-type jacoco
+          ./gradlew test jacocoTestReport
+          ./cc-test-reporter format-coverage build/reports/jacoco/test/jacocoTestReport.xml --input-type jacoco
           ./cc-test-reporter upload-coverage
+        working-directory: ./app
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
