@@ -6,9 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 
 public class JsonParser {
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static JsonNode parse(String jsonContent) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readTree(jsonContent);
+    public static JsonNode parse(String content) throws IOException {
+        return objectMapper.readTree(content);
     }
 }
