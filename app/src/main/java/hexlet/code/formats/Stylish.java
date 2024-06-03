@@ -26,6 +26,8 @@ public class Stylish {
                 case "nothing":
                     formattedDiff.append(String.format("    %s: %s\n", key, formatValue(change.get("oldValue"))));
                     break;
+                default:
+                    throw new IllegalArgumentException("Unexpected type: " + type);
             }
         }
 

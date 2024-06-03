@@ -1,7 +1,13 @@
 package hexlet.code;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import java.util.*;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeSet;
+import java.util.ArrayList;
 
 public class Comparator {
     public static List<Map<String, Object>> compare(JsonNode node1, JsonNode node2) {
