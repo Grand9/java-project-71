@@ -8,3 +8,6 @@
 
 ## Asciinema с примерами использования программы с yaml файлами
 [![asciicast](https://asciinema.org/a/O4g8YNRWiQvwR6sf3RSWwREil.svg)](https://asciinema.org/a/O4g8YNRWiQvwR6sf3RSWwREil)
+
+## Asciinema с примерами использования программы с вложенными структурами
+[![asciicast](https://asciinema.org/a/Ew6EIsIFlQH0tGCDZ78JC7ozz.svg)](https://asciinema.org/a/Ew6EIsIFlQH0tGCDZ78JC7ozz)
