@@ -11,4 +11,12 @@ public class JsonParser {
     public static JsonNode parse(String content) throws IOException {
         return OBJECT_MAPPER.readTree(content);
     }
+
+    public static JsonNode parseContent(String content, String fileType) throws IOException {
+        return switch (fileType) {
+            case "json" -> JsonParser.parse(content);
+            case "yaml", "yml" -> YamlConverter.parse(content);
+            default -> throw new IllegalArgumentException("Unsupported file type: " + fileType);
+        };
+    }
 }
