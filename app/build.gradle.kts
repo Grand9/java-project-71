@@ -38,11 +38,9 @@ dependencies {
     testImplementation("org.skyscreamer:jsonassert:1.5.1")
 }
 
-
 tasks.test {
     useJUnitPlatform()
 }
-
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
@@ -50,4 +48,9 @@ tasks.jacocoTestReport {
         xml.required.set(true)
         html.required.set(true)
     }
+}
+
+// Задача для установки дистрибутива
+tasks.register("install") {
+    dependsOn("installDist")
 }
