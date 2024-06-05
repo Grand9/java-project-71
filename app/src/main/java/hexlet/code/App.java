@@ -2,37 +2,36 @@ package hexlet.code;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
-
 import java.util.concurrent.Callable;
 
-@Command(name = "genDiff", mixinStandardHelpOptions = true, version = "genDiff 4.0",
+@Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
 public class App implements Callable<Integer> {
+    @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
+    boolean versionInfoRequested;
 
-    @Parameters(paramLabel = "filepath1", description = "path to first file")
-    private String filepath1;
+    @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
+    boolean usageHelpRequested;
 
-    @Parameters(paramLabel = "filepath2", description = "path to second file")
-    private String filepath2;
-
-    @Parameters(paramLabel = "format", description = "output format (plain, json, stylish)", defaultValue = "stylish")
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format [default: stylish]")
     private String format;
 
-    public static void main(String... args) {
-        int exitCode = new CommandLine(new App()).execute(args);
-        System.exit(exitCode);
-    }
+    @Parameters(index = "0", description = "path to first file")
+    private String filepath1;
+
+    @Parameters(index = "1", description = "path to second file")
+    private String filepath2;
 
     @Override
-    public Integer call() {
-        try {
-            String diff = Differ.generateDiff(filepath1, filepath2, format);
-            System.out.println(diff);
-            return 0;
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            return 1;
-        }
+    public Integer call() throws Exception {
+        System.out.println(Differ.generate(format, filepath1, filepath2));
+        return 0;
+    }
+
+    public static void main(String... args) throws Exception {
+        CommandLine commandLine = new CommandLine(new App());
+        commandLine.execute(args);
     }
 }

@@ -9,34 +9,43 @@ public class Plain {
         return value instanceof Map || value instanceof List;
     }
 
-    public static boolean quotationsNeeded(Object value) {
-        return !isListOrMap(value) && !value.equals("null") && !value.equals(false)
-                && !value.equals(true) && !(value instanceof Number);
+    public static String formatValue(Object value) {
+        if (value == null) {
+            return "null";
+        }
+        if (isListOrMap(value)) {
+            return "[complex value]";
+        }
+        if (value instanceof String) {
+            return "'" + value + "'";
+        }
+        return value.toString();
     }
 
-    public static Object replaceComplexValueWithString(Object object) {
-        return isListOrMap(object) ? "[complex value]" : object;
-    }
+    public static String format(List<Map<String, Object>> changes) {
+        StringBuilder result = new StringBuilder();
 
-    public static String plain(List<Map<String, Object>> listForFormatting) {
-        StringBuilder formattedString = new StringBuilder();
-        listForFormatting.forEach(map -> {
-            var value1 = replaceComplexValueWithString(map.get("oldValue"));
-            var value2 = replaceComplexValueWithString(map.get("newValue"));
-            switch (map.get("type of change").toString()) {
-                case "add" -> formattedString.append(String.format(quotationsNeeded(map.get("newValue"))
-                        ? "Property '" + map.get("key") + "' was added with value: '" + value2 + "'\n"
-                        : "Property '" + map.get("key") + "' was added with value: " + value2 + "\n"));
-                case "delete" -> formattedString.append("Property '" + map.get("key") + "' was removed\n");
-                case "change" -> {
-                    String stringForOutput = "Property '%s' was updated. From "
-                            + (quotationsNeeded(map.get("oldValue")) ? "'%s' to " : "%s to ")
-                            + (quotationsNeeded(map.get("newValue")) ? "'%s'\n" : "%s\n");
-                    formattedString.append(String.format(stringForOutput, map.get("key"), value1, value2));
-                }
-                default -> { }
+        for (Map<String, Object> change : changes) {
+            String key = change.get("key").toString();
+            String changeType = change.get("type of change").toString();
+            Object oldValue = change.get("oldValue");
+            Object newValue = change.get("newValue");
+
+            switch (changeType) {
+                case "add":
+                    result.append(String.format("Property '%s' was added with value: %s\n", key, formatValue(newValue)));
+                    break;
+                case "delete":
+                    result.append(String.format("Property '%s' was removed\n", key));
+                    break;
+                case "change":
+                    result.append(String.format("Property '%s' was updated. From %s to %s\n",
+                            key, formatValue(oldValue), formatValue(newValue)));
+                    break;
+                default:
             }
-        });
-        return formattedString.substring(0, formattedString.length() - 1);
+        }
+
+        return result.toString().trim();
     }
 }
