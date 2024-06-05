@@ -1,4 +1,14 @@
-### DiffCalculator
+# DiffCalculator
+# About the project
+The basic command syntax is: ./build/install/app/bin/app <file1> <file2> [-f <format>]
+Replace <file1> and <file2> with the paths to the YAML or JSON files you want to compare.
+The -f option is optional and allows you to specify the format of the output. If not provided, it defaults to "stylish".
+
+Example Command:
+To compare two YAML files (filePath11.yaml and filePath22.yaml) and display the differences in a stylish format, run:
+./build/install/app/bin/app src/main/resources/filePath11.yaml src/main/resources/filePath22.yaml -f stylish
+
+
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Grand9/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Grand9/java-project-71/actions)
