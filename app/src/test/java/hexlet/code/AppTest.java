@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AppTest {
 
     @Test
-    public void testGenerateJsonComparison() throws Exception {
+    public void testGenerateStylishComparison() throws Exception {
         String expected = new String(Files.readAllBytes(Paths.get("src/test/resources/expected1"))).trim();
         String result = Differ.generate("stylish", "src/test/resources/file1.json",
                 "src/test/resources/file2.json").trim();
@@ -40,7 +40,7 @@ public class AppTest {
     }
 
     @Test
-    public void testGenerateJsonComparisonSecond() throws Exception {
+    public void testGenerateStylishComparisonSecond() throws Exception {
         String expected = new String(Files.readAllBytes(Paths.get("src/test/resources/expected11"))).trim();
         String result = Differ.generate("stylish", "src/test/resources/file11.json",
                 "src/test/resources/file22.json").trim();
@@ -52,6 +52,14 @@ public class AppTest {
     public void testGenerateYamlComparisonSecond() throws Exception {
         String expected = new String(Files.readAllBytes(Paths.get("src/test/resources/expected11"))).trim();
         String result = Differ.generate("stylish", "src/test/resources/file11.yaml",
+                "src/test/resources/file22.yaml").trim();
+
+        assertThat(result).isEqualToIgnoringNewLines(expected);
+    }
+    @Test
+    public void testGenerateJsonComparison() throws Exception {
+        String expected = new String(Files.readAllBytes(Paths.get("src/test/resources/diffList.json"))).trim();
+        String result = Differ.generate("json", "src/test/resources/file11.yaml",
                 "src/test/resources/file22.yaml").trim();
 
         assertThat(result).isEqualToIgnoringNewLines(expected);
