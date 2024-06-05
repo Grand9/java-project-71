@@ -23,7 +23,7 @@ public class Stylish {
                     formattedDiff.append(String.format("  - %s: %s\n", key, formatValue(change.get("oldValue"))));
                     formattedDiff.append(String.format("  + %s: %s\n", key, formatValue(change.get("newValue"))));
                     break;
-                case "nothing":
+                case "unchanged":
                     formattedDiff.append(String.format("    %s: %s\n", key, formatValue(change.get("oldValue"))));
                     break;
                 default:

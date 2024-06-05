@@ -8,13 +8,7 @@ public class Differ {
         Map<String, Object> dataFile1 = JsonParser.parsing(file1);
         Map<String, Object> dataFile2 = JsonParser.parsing(file2);
         List<Map<String, Object>> diff = calculateDiff(dataFile1, dataFile2);
-        switch (format) {
-            case "plain":
-                return hexlet.code.formats.Plain.format(diff);
-            case "stylish":
-            default:
-                return stylish(diff);
-        }
+        return Formatter.format(diff, format);
     }
 
     public static List<Map<String, Object>> calculateDiff(Map<String, Object> dataFile1, Map<String, Object> dataFile2) {
@@ -49,36 +43,5 @@ public class Differ {
         }
 
         return diffList;
-    }
-
-    public static String stylish(List<Map<String, Object>> diffList) {
-        StringBuilder result = new StringBuilder();
-        result.append("{\n");
-        for (Map<String, Object> diff : diffList) {
-            String key = diff.get("key").toString();
-            String changeType = diff.get("type of change").toString();
-            Object oldValue = diff.get("oldValue");
-            Object newValue = diff.get("newValue");
-
-            switch (changeType) {
-                case "unchanged":
-                    result.append(String.format("    %s: %s\n", key, oldValue));
-                    break;
-                case "change":
-                    result.append(String.format("  - %s: %s\n", key, oldValue));
-                    result.append(String.format("  + %s: %s\n", key, newValue));
-                    break;
-                case "delete":
-                    result.append(String.format("  - %s: %s\n", key, oldValue));
-                    break;
-                case "add":
-                    result.append(String.format("  + %s: %s\n", key, newValue));
-                    break;
-                default:
-                    // do nothing
-            }
-        }
-        result.append("}");
-        return result.toString();
     }
 }
