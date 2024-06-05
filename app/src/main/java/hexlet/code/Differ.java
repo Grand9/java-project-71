@@ -9,7 +9,7 @@ import java.util.TreeSet;
 
 public class Differ {
 
-    public static String generate(String format, String file1, String file2) throws Exception {
+    public static String generate(String file1, String file2, String format) throws Exception {
         Map<String, Object> dataFile1 = JsonParser.parsing(file1);
         Map<String, Object> dataFile2 = JsonParser.parsing(file2);
         List<Map<String, Object>> diff = calculateDiff(dataFile1, dataFile2);
