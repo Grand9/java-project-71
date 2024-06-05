@@ -3,7 +3,7 @@ clean:
 build:
 	./gradlew build
 install:
-	./gradlew clean installShadowDist
+	./gradlew installDist
 test:
 	./gradlew test
 report:
