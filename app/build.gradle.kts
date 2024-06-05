@@ -1,6 +1,3 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-
 plugins {
     application
     jacoco
@@ -15,7 +12,7 @@ application {
     mainClass.set("hexlet.code.App")
 }
 
-group = "org.example"
+group = "hexlet.code"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -48,9 +45,4 @@ tasks.jacocoTestReport {
         xml.required.set(true)
         html.required.set(true)
     }
-}
-
-// Задача для установки дистрибутива
-tasks.register("install") {
-    dependsOn("installDist")
 }
