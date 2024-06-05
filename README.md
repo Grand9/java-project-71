@@ -11,3 +11,6 @@
 
 ## Asciinema с примерами использования программы с вложенными структурами
 [![asciicast](https://asciinema.org/a/Ew6EIsIFlQH0tGCDZ78JC7ozz.svg)](https://asciinema.org/a/Ew6EIsIFlQH0tGCDZ78JC7ozz)
+
+## Asciinema с примерами использования программы с форматом plain
+[![asciicast](https://asciinema.org/a/zY0gpYhCzZIsiA9V5wN4px7CP.svg)](https://asciinema.org/a/zY0gpYhCzZIsiA9V5wN4px7CP)
