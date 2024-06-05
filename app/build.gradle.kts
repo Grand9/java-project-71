@@ -46,7 +46,3 @@ tasks.jacocoTestReport {
         html.required.set(true)
     }
 }
-
-tasks.register("install") {
-    dependsOn("installDist")
-}
