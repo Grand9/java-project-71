@@ -14,3 +14,6 @@
 
 ## Asciinema с примерами использования программы с форматом plain
 [![asciicast](https://asciinema.org/a/zY0gpYhCzZIsiA9V5wN4px7CP.svg)](https://asciinema.org/a/zY0gpYhCzZIsiA9V5wN4px7CP)
+
+## Asciinema с примерами использования программы с форматом json
+[![asciicast](https://asciinema.org/a/1J5nDmp5m4CVqBbRsfD957OSu.svg)](https://asciinema.org/a/1J5nDmp5m4CVqBbRsfD957OSu)
