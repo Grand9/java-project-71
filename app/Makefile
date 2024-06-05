@@ -3,7 +3,7 @@ clean:
 build:
 	./gradlew build
 install:
-	./gradlew clean install
+	./gradlew clean installDist
 test:
 	./gradlew test
 report:
