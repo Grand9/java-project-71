@@ -60,8 +60,9 @@ public class AppTest {
     public void testGenerateJsonComparison() throws Exception {
         String expected = new String(Files.readAllBytes(Paths.get("src/test/resources/diffList.json"))).trim();
         String result = Differ.generate("json", "src/test/resources/file11.yaml",
-                "src/test/resources/file22.yaml").trim();
+                "src/test/resources/file22.yaml", "ignored_argument").trim();
 
         assertThat(result).isEqualToIgnoringNewLines(expected);
     }
+
 }
