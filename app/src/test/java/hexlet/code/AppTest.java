@@ -17,7 +17,7 @@ public class AppTest {
     }
 
     @Test
-    public void testGenerateYamlComparison() throws Exception {
+    public void testGeneratePlainComparison() throws Exception {
         String expected = """
             Property 'chars2' was updated. From [complex value] to false
             Property 'checked' was updated. From false to true
@@ -49,20 +49,20 @@ public class AppTest {
     }
 
     @Test
-    public void testGenerateYamlComparisonSecond() throws Exception {
+    public void testGenerateStylishComparisonThird() throws Exception {
         String expected = new String(Files.readAllBytes(Paths.get("src/test/resources/expected11"))).trim();
         String result = Differ.generate("stylish", "src/test/resources/file11.yaml",
                 "src/test/resources/file22.yaml").trim();
 
         assertThat(result).isEqualToIgnoringNewLines(expected);
     }
+
     @Test
     public void testGenerateJsonComparison() throws Exception {
         String expected = new String(Files.readAllBytes(Paths.get("src/test/resources/diffList.json"))).trim();
         String result = Differ.generate("json", "src/test/resources/file11.yaml",
-                "src/test/resources/file22.yaml", "ignored_argument").trim();
+                "src/test/resources/file22.yaml").trim();
 
         assertThat(result).isEqualToIgnoringNewLines(expected);
     }
-
 }
