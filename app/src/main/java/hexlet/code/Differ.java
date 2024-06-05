@@ -1,6 +1,11 @@
 package hexlet.code;
 
-import java.util.*;
+import java.util.Objects;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
 
 public class Differ {
 
@@ -11,7 +16,8 @@ public class Differ {
         return Formatter.format(diff, format);
     }
 
-    public static List<Map<String, Object>> calculateDiff(Map<String, Object> dataFile1, Map<String, Object> dataFile2) {
+    public static List<Map<String, Object>> calculateDiff(Map<String, Object> dataFile1, Map<String,
+            Object> dataFile2) {
         TreeSet<String> allKeys = new TreeSet<>(dataFile1.keySet());
         allKeys.addAll(dataFile2.keySet());
 

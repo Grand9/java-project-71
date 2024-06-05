@@ -33,7 +33,8 @@ public class Plain {
 
             switch (changeType) {
                 case "add":
-                    result.append(String.format("Property '%s' was added with value: %s\n", key, formatValue(newValue)));
+                    result.append(String.format("Property '%s' was added with value: %s\n",
+                            key, formatValue(newValue)));
                     break;
                 case "delete":
                     result.append(String.format("Property '%s' was removed\n", key));
