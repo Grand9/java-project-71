@@ -1,5 +1,23 @@
-{
-  "timeout": 20,
-  "verbose": true,
-  "host": "hexlet.io"
-}
+chars1:
+  - a
+  - b
+  - c
+chars2: true
+checked: true
+default: null
+id: null
+key2: value2
+numbers1:
+  - 1
+  - 2
+  - 3
+  - 4
+numbers2:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+setting1: Another value
+setting2: 300
+setting3: none
