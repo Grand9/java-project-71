@@ -1,68 +1,74 @@
 package hexlet.code;
 
 import org.junit.jupiter.api.Test;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
 
-    @Test
-    public void testGenerateStylishComparison() throws Exception {
-        String expected = new String(Files.readAllBytes(Paths.get("src/test/resources/expected1"))).trim();
-        String result = Differ.generate("src/test/resources/file1.json",
-                "src/test/resources/file2.json", "stylish").trim();
+    static final String PATH_TO_RESOURCES = "src/test/resources/";
 
+    public static String fixture(String nameOfFile) {
+        return PATH_TO_RESOURCES + nameOfFile;
+    }
+
+    @Test
+    public void testGenerateStylishComparisonJson() throws Exception {
+        String expected = Files.readString(Paths.get(fixture("expected1.stylish"))).trim();
+        String result = Differ.generate(fixture("file1.json"), fixture("file2.json"), "stylish").trim();
         assertThat(result).isEqualToIgnoringNewLines(expected);
     }
 
     @Test
-    public void testGeneratePlainComparison() throws Exception {
-        String expected = """
-                Property 'chars2' was updated. From [complex value] to false
-                Property 'checked' was updated. From false to true
-                Property 'default' was updated. From null to [complex value]
-                Property 'id' was updated. From 45 to null
-                Property 'key1' was removed
-                Property 'key2' was added with value: 'value2'
-                Property 'numbers2' was updated. From [complex value] to [complex value]
-                Property 'numbers3' was removed
-                Property 'numbers4' was added with value: [complex value]
-                Property 'obj1' was added with value: [complex value]
-                Property 'setting1' was updated. From 'Some value' to 'Another value'
-                Property 'setting2' was updated. From 200 to 300
-                Property 'setting3' was updated. From true to 'none'""";
-
-        String result = Differ.generate("src/test/resources/file11.yaml",
-                "src/test/resources/file22.yaml", "plain").trim();
-
+    public void testGenerateStylishComparisonYaml() throws Exception {
+        String expected = Files.readString(Paths.get(fixture("expected1.stylish"))).trim();
+        String result = Differ.generate(fixture("file1.yaml"), fixture("file2.yaml"), "stylish").trim();
         assertThat(result).isEqualToIgnoringNewLines(expected);
     }
 
     @Test
-    public void testGenerateStylishComparisonSecond() throws Exception {
-        String expected = new String(Files.readAllBytes(Paths.get("src/test/resources/expected11"))).trim();
-        String result = Differ.generate("src/test/resources/file11.json",
-                "src/test/resources/file22.json", "stylish").trim();
-
+    public void testGeneratePlainComparisonJson() throws Exception {
+        String expected = Files.readString(Paths.get(fixture("expected1.plain"))).trim();
+        String result = Differ.generate(fixture("file1.json"), fixture("file2.json"), "plain").trim();
         assertThat(result).isEqualToIgnoringNewLines(expected);
     }
 
     @Test
-    public void testGenerateStylishComparisonThird() throws Exception {
-        String expected = new String(Files.readAllBytes(Paths.get("src/test/resources/expected11"))).trim();
-        String result = Differ.generate("src/test/resources/file11.yaml",
-                "src/test/resources/file22.yaml", "stylish").trim();
-
+    public void testGeneratePlainComparisonYaml() throws Exception {
+        String expected = Files.readString(Paths.get(fixture("expected1.plain"))).trim();
+        String result = Differ.generate(fixture("file1.yaml"), fixture("file2.yaml"), "plain").trim();
         assertThat(result).isEqualToIgnoringNewLines(expected);
     }
 
     @Test
-    public void testGenerateJsonComparison() throws Exception {
-        String expected = new String(Files.readAllBytes(Paths.get("src/test/resources/diffList.json"))).trim();
-        String result = Differ.generate("src/test/resources/file11.yaml",
-                "src/test/resources/file22.yaml", "json").trim();
-
+    public void testGenerateJsonComparisonJson() throws Exception {
+        String expected = Files.readString(Paths.get(fixture("expected1.json"))).trim();
+        String result = Differ.generate(fixture("file1.json"), fixture("file2.json"), "json").trim();
         assertThat(result).isEqualToIgnoringNewLines(expected);
     }
+
+    @Test
+    public void testGenerateJsonComparisonYaml() throws Exception {
+        String expected = Files.readString(Paths.get(fixture("expected1.json"))).trim();
+        String result = Differ.generate(fixture("file1.yaml"), fixture("file2.yaml"), "json").trim();
+        assertThat(result).isEqualToIgnoringNewLines(expected);
+    }
+
+    @Test
+    public void testGenerateWithoutFormatterJson() throws Exception {
+        String expected = Files.readString(Paths.get(fixture("expected1.stylish"))).trim();
+        String result = Differ.generate(fixture("file1.json"), fixture("file2.json")).trim();
+        assertThat(result).isEqualToIgnoringNewLines(expected);
+    }
+
+    @Test
+    public void testGenerateWithoutFormatterYaml() throws Exception {
+        String expected = Files.readString(Paths.get(fixture("expected1.stylish"))).trim();
+        String result = Differ.generate(fixture("file1.yaml"), fixture("file2.yaml")).trim();
+        assertThat(result).isEqualToIgnoringNewLines(expected);
+    }
+
 }

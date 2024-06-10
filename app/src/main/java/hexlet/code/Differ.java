@@ -1,11 +1,12 @@
 package hexlet.code;
 
-import java.util.Objects;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.TreeSet;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Differ {
 
@@ -14,10 +15,40 @@ public class Differ {
     }
 
     public static String generate(String file1, String file2, String format) throws Exception {
-        Map<String, Object> dataFile1 = Parser.parsing(file1);
-        Map<String, Object> dataFile2 = Parser.parsing(file2);
+        Map<String, Object> dataFile1 = readFileAndParse(file1);
+        Map<String, Object> dataFile2 = readFileAndParse(file2);
         List<Map<String, Object>> diff = calculateDiff(dataFile1, dataFile2);
         return Formatter.format(diff, format);
+    }
+
+    private static Map<String, Object> readFileAndParse(String filepath) throws Exception {
+        Path path = Paths.get(filepath).toAbsolutePath().normalize();
+        byte[] fileContent = Files.readAllBytes(path);
+        String content = new String(fileContent);
+        String extension = getFileExtension(filepath);
+
+        Parser parser = getParserByExtension(extension);
+        return parser.parse(content);
+    }
+
+    private static Parser getParserByExtension(String extension) {
+        switch (extension) {
+            case "json":
+                return new JsonParser();
+            case "yml":
+            case "yaml":
+                return new YamlParser();
+            default:
+                throw new RuntimeException(extension + " is an unknown file type");
+        }
+    }
+
+    private static String getFileExtension(String filename) {
+        int lastIndexOfDot = filename.lastIndexOf('.');
+        if (lastIndexOfDot == -1) {
+            throw new RuntimeException("No file extension found in " + filename);
+        }
+        return filename.substring(lastIndexOfDot + 1);
     }
 
     public static List<Map<String, Object>> calculateDiff(Map<String, Object> dataFile1, Map<String,
