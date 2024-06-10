@@ -14,10 +14,10 @@ public class YamlParser implements Parser {
         return objectMapper.readValue(content, new TypeReference<>() { });
     }
 }
-/*
-  Parses the given content and returns a map representation.
-
-  @param content The content to parse.
+/**
+ * Parses the given content and returns a map representation.
+ *
+ * @param content The content to parse.
  * @return A map representation of the parsed content.
  * @throws Exception If an error occurs during parsing.
  */
