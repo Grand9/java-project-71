@@ -2,6 +2,7 @@ package hexlet.code;
 
 import java.util.Map;
 
+
 public interface Parser {
     /**
      * Parses the given content and returns a map representation.

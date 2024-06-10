@@ -7,7 +7,13 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import java.util.Map;
 
 public class YamlParser implements Parser {
-
+    /**
+     * Parses the given content and returns a map representation.
+     *
+     * @param content The content to parse.
+     * @return A map representation of the parsed content.
+     * @throws Exception If an error occurs during parsing.
+     */
     @Override
     public Map<String, Object> parse(String content) throws Exception {
         ObjectMapper objectMapper = new YAMLMapper();
