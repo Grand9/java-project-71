@@ -9,7 +9,8 @@ import java.util.TreeSet;
 
 public class Tree {
 
-    public static List<Map<String, Object>> calculateDiff(Map<String, Object> dataFile1, Map<String, Object> dataFile2) {
+    public static List<Map<String, Object>> calculateDiff(Map<String, Object> dataFile1,
+                                                          Map<String, Object> dataFile2) {
         TreeSet<String> allKeys = new TreeSet<>(dataFile1.keySet());
         allKeys.addAll(dataFile2.keySet());
 
@@ -22,7 +23,8 @@ public class Tree {
         return diffList;
     }
 
-    public static Map<String, Object> buildDiff(String key, Map<String, Object> dataFile1, Map<String, Object> dataFile2) {
+    public static Map<String, Object> buildDiff(String key, Map<String, Object> dataFile1,
+                                                Map<String, Object> dataFile2) {
         Map<String, Object> diff = new HashMap<>();
         diff.put("key", key);
 

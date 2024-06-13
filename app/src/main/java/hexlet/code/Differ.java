@@ -6,8 +6,6 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.List;
 
-import static hexlet.code.Parser.*;
-
 public class Differ {
 
     public static String generate(String file1, String file2) throws Exception {
