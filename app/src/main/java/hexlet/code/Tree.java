@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Tree {
-    public static Map<String, Object> buildDiff(String key, Map<String, Object> dataFile1, Map<String, Object> dataFile2) {
+    public static Map<String, Object> buildDiff(String key, Map<String, Object> dataFile1,
+                                                Map<String, Object> dataFile2) {
         Map<String, Object> diff = new HashMap<>();
         diff.put("key", key);
 

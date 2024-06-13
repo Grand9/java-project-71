@@ -27,20 +27,8 @@ public class Differ {
         String content = new String(fileContent);
         String extension = getFileExtension(filepath);
 
-        Parser parser = getParserByExtension(extension);
+        Parser parser = Parser.getParserByExtension(extension);
         return parser.parse(content);
-    }
-
-    private static Parser getParserByExtension(String extension) {
-        switch (extension) {
-            case "json":
-                return new JsonParser();
-            case "yml":
-            case "yaml":
-                return new YamlParser();
-            default:
-                throw new RuntimeException(extension + " is an unknown file type");
-        }
     }
 
     private static String getFileExtension(String filename) {
