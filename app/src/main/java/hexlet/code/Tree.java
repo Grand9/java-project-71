@@ -1,12 +1,28 @@
 package hexlet.code;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class Tree {
-    public static Map<String, Object> buildDiff(String key, Map<String, Object> dataFile1,
-                                                Map<String, Object> dataFile2) {
+
+    public static List<Map<String, Object>> calculateDiff(Map<String, Object> dataFile1, Map<String, Object> dataFile2) {
+        TreeSet<String> allKeys = new TreeSet<>(dataFile1.keySet());
+        allKeys.addAll(dataFile2.keySet());
+
+        List<Map<String, Object>> diffList = new ArrayList<>();
+
+        for (String key : allKeys) {
+            Map<String, Object> diff = buildDiff(key, dataFile1, dataFile2);
+            diffList.add(diff);
+        }
+        return diffList;
+    }
+
+    public static Map<String, Object> buildDiff(String key, Map<String, Object> dataFile1, Map<String, Object> dataFile2) {
         Map<String, Object> diff = new HashMap<>();
         diff.put("key", key);
 
