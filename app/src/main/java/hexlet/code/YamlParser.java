@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import java.util.Map;
 
-public class YamlParser implements Parser {
+public class YamlParser extends Parser {
     /**
      * Parses the given content and returns a map representation.
      *

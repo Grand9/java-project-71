@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Map;
 
-public class JsonParser implements Parser {
+public class JsonParser extends Parser {
     /**
      * Parses the given content and returns a map representation.
      *
