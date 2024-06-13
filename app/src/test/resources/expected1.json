@@ -1,59 +1,59 @@
 [ {
-  "newValue" : [ "a", "b", "c" ],
-  "type of change" : "unchanged",
-  "oldValue" : [ "a", "b", "c" ],
+  "value2" : [ "a", "b", "c" ],
+  "value1" : [ "a", "b", "c" ],
+  "type" : "unchanged",
   "key" : "chars1"
 }, {
-  "newValue" : true,
-  "type of change" : "change",
-  "oldValue" : false,
+  "value2" : true,
+  "value1" : false,
+  "type" : "changed",
   "key" : "chars2"
 }, {
-  "newValue" : true,
-  "type of change" : "change",
-  "oldValue" : false,
+  "value2" : true,
+  "value1" : false,
+  "type" : "changed",
   "key" : "checked"
 }, {
-  "newValue" : null,
-  "type of change" : "unchanged",
-  "oldValue" : null,
+  "value2" : null,
+  "value1" : null,
+  "type" : "unchanged",
   "key" : "default"
 }, {
-  "newValue" : null,
-  "type of change" : "change",
-  "oldValue" : 45,
+  "value2" : null,
+  "value1" : 45,
+  "type" : "changed",
   "key" : "id"
 }, {
-  "type of change" : "delete",
-  "oldValue" : "value1",
+  "value1" : "value1",
+  "type" : "deleted",
   "key" : "key1"
 }, {
-  "newValue" : "value2",
-  "type of change" : "add",
+  "value2" : "value2",
+  "type" : "added",
   "key" : "key2"
 }, {
-  "newValue" : [ 1, 2, 3, 4 ],
-  "type of change" : "unchanged",
-  "oldValue" : [ 1, 2, 3, 4 ],
+  "value2" : [ 1, 2, 3, 4 ],
+  "value1" : [ 1, 2, 3, 4 ],
+  "type" : "unchanged",
   "key" : "numbers1"
 }, {
-  "newValue" : [ 1, 2, 3, 4, 5 ],
-  "type of change" : "change",
-  "oldValue" : [ 1, 2, 3, 4 ],
+  "value2" : [ 1, 2, 3, 4, 5 ],
+  "value1" : [ 1, 2, 3, 4 ],
+  "type" : "changed",
   "key" : "numbers2"
 }, {
-  "newValue" : "Another value",
-  "type of change" : "change",
-  "oldValue" : "Some value",
+  "value2" : "Another value",
+  "value1" : "Some value",
+  "type" : "changed",
   "key" : "setting1"
 }, {
-  "newValue" : 300,
-  "type of change" : "change",
-  "oldValue" : 200,
+  "value2" : 300,
+  "value1" : 200,
+  "type" : "changed",
   "key" : "setting2"
 }, {
-  "newValue" : "none",
-  "type of change" : "change",
-  "oldValue" : true,
+  "value2" : "none",
+  "value1" : true,
+  "type" : "changed",
   "key" : "setting3"
 } ]

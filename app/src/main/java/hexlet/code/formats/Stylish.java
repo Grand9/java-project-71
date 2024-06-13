@@ -10,21 +10,25 @@ public class Stylish {
 
         for (Map<String, Object> change : diff) {
             String key = (String) change.get("key");
-            String type = (String) change.get("type of change");
+            String type = (String) change.get("type");
+
+            if (key == null || type == null) {
+                throw new IllegalArgumentException("Key or type cannot be null");
+            }
 
             switch (type) {
-                case "add":
-                    formattedDiff.append(String.format("  + %s: %s\n", key, formatValue(change.get("newValue"))));
+                case "added":
+                    formattedDiff.append(String.format("  + %s: %s\n", key, formatValue(change.get("value2"))));
                     break;
-                case "delete":
-                    formattedDiff.append(String.format("  - %s: %s\n", key, formatValue(change.get("oldValue"))));
+                case "deleted":
+                    formattedDiff.append(String.format("  - %s: %s\n", key, formatValue(change.get("value1"))));
                     break;
-                case "change":
-                    formattedDiff.append(String.format("  - %s: %s\n", key, formatValue(change.get("oldValue"))));
-                    formattedDiff.append(String.format("  + %s: %s\n", key, formatValue(change.get("newValue"))));
+                case "changed":
+                    formattedDiff.append(String.format("  - %s: %s\n", key, formatValue(change.get("value1"))));
+                    formattedDiff.append(String.format("  + %s: %s\n", key, formatValue(change.get("value2"))));
                     break;
                 case "unchanged":
-                    formattedDiff.append(String.format("    %s: %s\n", key, formatValue(change.get("oldValue"))));
+                    formattedDiff.append(String.format("    %s: %s\n", key, formatValue(change.get("value1"))));
                     break;
                 default:
                     throw new IllegalArgumentException("Unexpected type: " + type);

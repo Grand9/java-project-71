@@ -27,21 +27,21 @@ public class Plain {
 
         for (Map<String, Object> change : changes) {
             String key = change.get("key").toString();
-            String changeType = change.get("type of change").toString();
-            Object oldValue = change.get("oldValue");
-            Object newValue = change.get("newValue");
+            String changeType = change.get("type").toString();
+            Object value1 = change.get("value1");
+            Object value2 = change.get("value2");
 
             switch (changeType) {
-                case "add":
+                case "added":
                     result.append(String.format("Property '%s' was added with value: %s\n",
-                            key, formatValue(newValue)));
+                            key, formatValue(value2)));
                     break;
-                case "delete":
+                case "deleted":
                     result.append(String.format("Property '%s' was removed\n", key));
                     break;
-                case "change":
+                case "changed":
                     result.append(String.format("Property '%s' was updated. From %s to %s\n",
-                            key, formatValue(oldValue), formatValue(newValue)));
+                            key, formatValue(value1), formatValue(value2)));
                     break;
                 default:
             }
